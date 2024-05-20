@@ -380,13 +380,16 @@ module keycap_cs_thumb(keyID = 0, cutLen = 0, visualizeDish = false, crossSectio
           }
         }
 
+        // Obsolete?
         // Fix JLCPCB complaint about non-unified thumb keys
         // Thanks to wolfwood for prividing it.
         stemLayerAddition = (
           keyID == 2 // 1u Thumb key
-            ? 20
-          : keyID == 3 || keyId == 4 // 1.5u and 2u Thumb key
-            ? 8
+            ? 0
+          : keyID == 3 // 1.5u Thumb key
+            ? 0
+          : keyID == 4 // 2u Thumb key
+            ? 0
           : // else
             0
         );
@@ -398,8 +401,8 @@ module keycap_cs_thumb(keyID = 0, cutLen = 0, visualizeDish = false, crossSectio
           skin([
             for (i=[0:stemLayers-1 + stemLayerAddition])
               transform(
-                translation(StemTranslation(i,keyID)),
-                rounded_rectangle_profile(StemTransform(i, keyID, StemRot),fn=fn,r=1 /*StemRadius(i, keyID) */ )
+                translation(StemTranslation(i,keyID))*rotation(StemRotation(i, keyID)),
+                rounded_rectangle_profile(StemTransform(i, keyID, StemRot),fn=fn,r=StemRadius(i, keyID))
               )
           ]); //outer shell
      }
