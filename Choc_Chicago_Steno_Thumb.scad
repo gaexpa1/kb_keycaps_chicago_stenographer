@@ -24,7 +24,7 @@ mirror([1,0,0])keycap_cs_thumb(
 );
 
 //-Parameters
-wallthickness = 1.1; // 1.75 for mx size, 1.1
+wallthickness = 1.0; // 1.75 for mx size, 1.1
 topthickness = 2.5; //2 for phat 3 for chicago
 stepsize = 40;  //resolution of Trajectory
 step =2;       //resolution of ellipes
@@ -50,10 +50,10 @@ keyParameters = //keyParameters[KeyID][ParameterID]
 //  BotWid, BotLen, TWDif, TLDif,                        keyh, WSft, LSft, XSkew, YSkew, ZSkew, WEx, LEx, CapR0i, CapR0f, CapR1i, CapR1f, CapREx, StemEx
     //Column 0
     //Levee: Chicago in choc Dimension for ref
-    [17.20,  16.00,   5.6, 	   5,  5.0+spacerProtrusionHeight,    0,   .0,     5,    -0,    -0,   2, 2.5,    .10,      2,     .10,      3,     2,       2], //Levee Steno R2/R4
-    [17.20,  16.00,   5.6, 	   5,  4.6+spacerProtrusionHeight,    0,   .0,     0,    -0,    -0,   2, 2.5,    .10,      3,     .10,      3,     2,       2], //Levee Steno R3
+    [17.40,  16.40,   5.6, 	   5,  5.3+spacerProtrusionHeight,    0,   .0,     5,    -0,    -0,   2, 2.5,    .10,      2,     .10,      3,     2,       2], //Levee Steno R2/R4
+    [17.40,  16.40,   5.6, 	   5,  4.9+spacerProtrusionHeight,    0,   .0,     1,    -0,    -0,   2, 2.5,    .10,      3,     .10,      3,     2,       2], //Levee Steno R3
     //Thumb
-    [17.20,  16.00,  4.25, 	3.25,  5.0+spacerProtrusionHeight,  -.5,  0.0,    -3,    -3,    -0,   2,   2,    .10,      2,     .10,      2,     2,       2], //Thumb 1
+    [17.40,  16.40,  4.25, 	3.25,  5.1+spacerProtrusionHeight,  -.5,  0.0,    -3,    -3,    -0,   2,   2,    .10,      2,     .10,      2,     2,       2], //Thumb 1
     [15.65,  26.4,   5.5, 	3.25,  4.9+spacerProtrusionHeight,  -.5,  0.0,    -3,    -2,    -2,   2,   2,     .3,      2,      .3,    2.5,     2,       2], //Thumb 1.5
     [15.65,  35.8,  4.25, 	3.25,  4.9+spacerProtrusionHeight, -.25,  0.0,    -2.5,    -4,    -2,   2,   3,     .3,      2,      .3,    2.5,     2,       2], //Thumb 2.0
     //1.25 5
