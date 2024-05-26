@@ -523,7 +523,8 @@ module cherry_stem(depth, slop) {
 
 module choc_stem(draftAng = 5) {
   datumHeight = stemCrossHeight+.1;  // refer to StemTranslation
-  stemProtrusionHeight = 3.0;
+  spacerProtrusionHeight = 0.5;
+  stemProtrusionHeight = 3.0 + spacerProtrusionHeight;
   legHeight = stemProtrusionHeight + 0.1;
   r = 0.1;
   legWid = 1.1;
@@ -545,6 +546,21 @@ module choc_stem(draftAng = 5) {
 
   translate([5.7/2, 0, legHeight/2 - stemProtrusionHeight + datumHeight]) leg();
   translate([-5.7/2, 0, legHeight/2 - stemProtrusionHeight + datumHeight]) leg();
+
+  spacerHeight = spacerProtrusionHeight + 0.1;
+  spacerWid = 0.5;
+  spacerLen = 2.5;
+  module spacer() {
+    translate([0, 0, -spacerHeight/2]) linear_extrude(height = spacerHeight) hull() {
+      translate([0, (spacerLen - spacerWid)/2]) circle(d = spacerWid);
+      translate([0, -(spacerLen - spacerWid)/2]) circle(d = spacerWid);
+    }
+  }
+
+  translate([4.0, 0, spacerHeight/2 - spacerProtrusionHeight + datumHeight]) spacer();
+  translate([1.7, 0, spacerHeight/2 - spacerProtrusionHeight + datumHeight]) spacer();
+  translate([-1.7, 0, spacerHeight/2 - spacerProtrusionHeight + datumHeight]) spacer();
+  translate([-4.0, 0, spacerHeight/2 - spacerProtrusionHeight + datumHeight]) spacer();
 }
 
 /// ----- helper functions
