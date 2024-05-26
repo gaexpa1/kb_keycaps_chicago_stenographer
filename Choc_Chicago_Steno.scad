@@ -26,17 +26,17 @@ keycap_cs(
 
 //-Parameters
 wallthickness = 1.1; // 1.75 for mx size, 1.1
-topthickness = 3.0; //2 for phat 3 for chicago
+topthickness = 2.5; //2 for phat 3 for chicago
 stepsize = 50;  //resolution of Trajectory
 step = 0.5;       //resolution of ellipes
 fn = 60;          //resolution of Rounded Rectangles: 60 for output
 layers = 50;    //resolution of vertical Sweep: 50 for output
 
 //---Stem param
-slop    = 0.3;
+slop    = 0.25;
 stemRot = 0;
-stemWid = 8;
-stemLen = 6;
+stemWid = 8.8 + slop*2;
+stemLen = 4.4 + slop*2;
 stemCrossHeight = 1.8;
 extra_vertical = 0.6;
 stemLayers = 50; //resolution of stem to cap top transition
@@ -348,27 +348,29 @@ module keycap_cs(keyID = 0, cutLen = 0, visualizeDish = false, crossSection = fa
 $fn = fn;
 
 module choc_stem(draftAng = 5) {
-  stemHeight = 3.1;
-  dia = .15;
-  wids = 1.2/2;
-  lens = 2.9/2;
-  module Stem() {
-    difference(){
-      translate([0,0,-stemHeight/2])linear_extrude(height = stemHeight)hull(){
-        translate([wids-dia,-3/2])circle(d=dia);
-        translate([-wids+dia,-3/2])circle(d=dia);
-        translate([wids-dia, 3/2])circle(d=dia);
-        translate([-wids+dia, 3/2])circle(d=dia);
+  datumHeight = stemCrossHeight+.1;  // refer to StemTranslation
+  stemProtrusionHeight = 3.0;
+  legHeight = stemProtrusionHeight + 0.1;
+  r = 0.1;
+  legWid = 1.1;
+  legLen = 3.0;
+  module leg() {
+    difference() {
+      translate([0, 0, -legHeight/2]) linear_extrude(height = legHeight) hull() {
+        translate([legWid/2 - r, legLen/2 - r]) circle(r = r);
+        translate([legWid/2 - r, -legLen/2 + r]) circle(r = r);
+        translate([-legWid/2 + r, legLen/2 - r]) circle(r = r);
+        translate([-legWid/2 + r, -legLen/2 + r]) circle(r = r);
       }
 
-    //cuts
-      translate([3.9,0])cylinder(d1=7+sin(draftAng)*stemHeight, d2=7,3.5, center = true, $fn = 64);
-      translate([-3.9,0])cylinder(d1=7+sin(draftAng)*stemHeight,d2=7,3.5, center = true, $fn = 64);
+      //cuts
+      translate([3.9, 0]) cylinder(h = legHeight+0.1, d1 = 7 + sin(draftAng)*(legHeight+0.1), d2 = 7, center = true, $fn = 64);
+      translate([-3.9, 0]) cylinder(h = legHeight+0.1, d1 = 7 + sin(draftAng)*(legHeight+0.1), d2 = 7, center = true, $fn = 64);
     }
   }
 
-  translate([5.7/2,0,-stemHeight/2+2])Stem();
-  translate([-5.7/2,0,-stemHeight/2+2])Stem();
+  translate([5.7/2, 0, legHeight/2 - stemProtrusionHeight + datumHeight]) leg();
+  translate([-5.7/2, 0, legHeight/2 - stemProtrusionHeight + datumHeight]) leg();
 }
 /// ----- helper functions
 function rounded_rectangle_profile(size=[1,1],r=1,fn=32) = [
