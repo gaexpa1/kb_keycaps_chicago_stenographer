@@ -33,11 +33,12 @@ fn = 60;          //resolution of Rounded Rectangles: 60 for output
 layers = 50;    //resolution of vertical Sweep: 50 for output
 
 //---Stem param
+spacerProtrusionHeight = 0.5;
 slop    = 0.25;
 stemRot = 0;
 stemWid = 8.8 + slop*2;
 stemLen = 4.4 + slop*2;
-stemCrossHeight = 1.8;
+stemCrossHeight = 1.8+spacerProtrusionHeight;
 extra_vertical = 0.6;
 stemLayers = 50; //resolution of stem to cap top transition
 //#cube([18.16, 18.16, 10], center = true); // sanity check border
@@ -49,35 +50,35 @@ draftAngle = 0; //degree  note:Stem Only
 
 keyParameters = //keyParameters[KeyID][ParameterID]
 [
-//  BotWid, BotLen, TWDif, TLDif, keyh, WSft, LSft  XSkew, YSkew, ZSkew, WEx, LEx, CapR0i, CapR0f, CapR1i, CapR1f, CapREx, StemEx
+//  BotWid, BotLen, TWDif, TLDif,                        keyh, WSft, LSft, XSkew, YSkew, ZSkew, WEx, LEx, CapR0i, CapR0f, CapR1i, CapR1f, CapREx, StemEx
     //Column 0
     //Levee: Chicago in choc Dimension
-    [17.20,  16.00,   5.6, 	   5,  4.9,    0,   .0,     5,    -0,    -0,   2, 2.5,    .10,      2,     .10,      3,     2,       2], //Chicago Steno R2/R4
-    [17.20,  16.00,   5.6, 	   5,  4.5,    0,   .0,     0,    -0,    -0,   2, 2.5,    .10,      3,     .10,      3,     2,       2], //Chicago Steno R3 flat
-    [17.20,  16.00,  1.25, 	1.25,  4.5,    0,   .0,     0,    -0,    -0,   2, 2.5,    .10,     .5,     .10,     .5,     2,       2], //Chicago Steno R3 chord
+    [17.20,  16.00,   5.6, 	   5,  4.9+spacerProtrusionHeight,    0,   .0,     5,    -0,    -0,   2, 2.5,    .10,      2,     .10,      3,     2,       2], //Chicago Steno R2/R4
+    [17.20,  16.00,   5.6, 	   5,  4.5+spacerProtrusionHeight,    0,   .0,     0,    -0,    -0,   2, 2.5,    .10,      3,     .10,      3,     2,       2], //Chicago Steno R3 flat
+    [17.20,  16.00,  1.25, 	1.25,  4.5+spacerProtrusionHeight,    0,   .0,     0,    -0,    -0,   2, 2.5,    .10,     .5,     .10,     .5,     2,       2], //Chicago Steno R3 chord
     //mods 3
-    [17.20,  16.00,  4.25, 	3.25,  5.5,  -.7,  0.7,     0,    -4,    -0,   2,   2,    .10,      2,     .10,      2,     2,       2], //Levee Corner R2
-    [17.20,  16.00,  4.25, 	3.25,  5.2,  -.8,  0.6,     0,    -4,    -0,   2,   3,    .10,      2,     .10,      2,     2,       2], //Levee Corner R2
+    [17.20,  16.00,  4.25, 	3.25,  5.5+spacerProtrusionHeight,  -.7,  0.7,     0,    -4,    -0,   2,   2,    .10,      2,     .10,      2,     2,       2], //Levee Corner R2
+    [17.20,  16.00,  4.25, 	3.25,  5.2+spacerProtrusionHeight,  -.8,  0.6,     0,    -4,    -0,   2,   3,    .10,      2,     .10,      2,     2,       2], //Levee Corner R2
     //1.25: [5, 6]
-    [21.7,   15.60,  5.6, 	   5,  4.9,    0,   .0,     5,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.25u
-    [21.7,   15.60,  5.6, 	   5,  4.5,    0,   .0,     0,    -0,    -0,   2, 2.5,     .1,      3,      .1,      3,     2,       2], //Chicago Steno R3 1.25u
+    [21.7,   15.60,  5.6, 	   5,  4.9+spacerProtrusionHeight,    0,   .0,     5,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.25u
+    [21.7,   15.60,  5.6, 	   5,  4.5+spacerProtrusionHeight,    0,   .0,     0,    -0,    -0,   2, 2.5,     .1,      3,      .1,      3,     2,       2], //Chicago Steno R3 1.25u
     //1.5: [7, 8]
-    [26.20,  15.60,   5.6, 	   5,  4.9,    0,   .0,     5,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.5
-    [26.20,  15.60,   5.6, 	   5,  4.5,    0,   .0,     0,    -0,    -0,   2, 2.5,     .1,      3,      .1,      3,     2,       2], //Chicago Steno R3 1.5u
+    [26.20,  15.60,   5.6, 	   5,  4.9+spacerProtrusionHeight,    0,   .0,     5,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.5
+    [26.20,  15.60,   5.6, 	   5,  4.5+spacerProtrusionHeight,    0,   .0,     0,    -0,    -0,   2, 2.5,     .1,      3,      .1,      3,     2,       2], //Chicago Steno R3 1.5u
     //1.75: [9, 10]
-    [30.70,  15.60,   5.6, 	   5,  4.9,    0,   .0,     5,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.5
-    [30.70,  15.60,   5.6, 	   5,  4.5,    0,   .0,     0,    -0,    -0,   2, 2.5,     .1,      3,      .1,      3,     2,       2], //Chicago Steno R3 1.5u
+    [30.70,  15.60,   5.6, 	   5,  4.9+spacerProtrusionHeight,    0,   .0,     5,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.5
+    [30.70,  15.60,   5.6, 	   5,  4.5+spacerProtrusionHeight,    0,   .0,     0,    -0,    -0,   2, 2.5,     .1,      3,      .1,      3,     2,       2], //Chicago Steno R3 1.5u
     //2.00: [11, 12]
-    [35.20,  15.60,   5.6, 	   5,  4.9,    0,   .0,     5,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.5
-    [35.20,  15.60,   5.6, 	   5,  4.5,    0,   .0,     0,    -0,    -0,   2, 2.5,     .1,      3,      .1,      3,     2,       2], //Chicago Steno R3 1.5u
+    [35.20,  15.60,   5.6, 	   5,  4.9+spacerProtrusionHeight,    0,   .0,     5,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.5
+    [35.20,  15.60,   5.6, 	   5,  4.5+spacerProtrusionHeight,    0,   .0,     0,    -0,    -0,   2, 2.5,     .1,      3,      .1,      3,     2,       2], //Chicago Steno R3 1.5u
     //2.25: [13, 14]
-    [39.70,  15.60,   5.6, 	   5,  4.9,    0,   .0,     5,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.5
-    [39.70,  15.60,   5.6, 	   5,  4.5,    0,   .0,     0,    -0,    -0,   2, 2.5,     .1,      3,      .1,      3,     2,       2], //Chicago Steno R3 1.5u
+    [39.70,  15.60,   5.6, 	   5,  4.9+spacerProtrusionHeight,    0,   .0,     5,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.5
+    [39.70,  15.60,   5.6, 	   5,  4.5+spacerProtrusionHeight,    0,   .0,     0,    -0,    -0,   2, 2.5,     .1,      3,      .1,      3,     2,       2], //Chicago Steno R3 1.5u
     // Ergo shits
-    [18.75,  18.75,   5.6, 	   5,    8,    0,   .25,     0,    -0,    -0,   2, 2.5,    .10,      3,     .10,      3,     2,       2], //highpro 19.05 R2|4
-    [17.20,  16.00,   5.6, 	   5,  4.7,    0,   .0,      3,    -0,    -0,   2, 2.5,    .10,      2,     .10,      3,     2,       2], //Chicago Steno R2 ALT
-    [17.20,  16.00,   5.6, 	   5,  5.5,    0,   .0,      7,    -0,    -0,   2, 2.5,    .10,      2,     .10,      3,     2,       2], //Chicago Steno R1 Steap
-    [17.20,  16.00,   5.6, 	   5,  7.0,    0,   .0,     10,    -0,    -0,   2, 2.5,    .10,      2,     .10,      3,     2,       2] //Chicago Steno R1 mild with alt R2
+    [18.75,  18.75,   5.6, 	   5,    8+spacerProtrusionHeight,    0,   .25,     0,    -0,    -0,   2, 2.5,    .10,      3,     .10,      3,     2,       2], //highpro 19.05 R2|4
+    [17.20,  16.00,   5.6, 	   5,  4.7+spacerProtrusionHeight,    0,   .0,      3,    -0,    -0,   2, 2.5,    .10,      2,     .10,      3,     2,       2], //Chicago Steno R2 ALT
+    [17.20,  16.00,   5.6, 	   5,  5.5+spacerProtrusionHeight,    0,   .0,      7,    -0,    -0,   2, 2.5,    .10,      2,     .10,      3,     2,       2], //Chicago Steno R1 Steap
+    [17.20,  16.00,   5.6, 	   5,  7.0+spacerProtrusionHeight,    0,   .0,     10,    -0,    -0,   2, 2.5,    .10,      2,     .10,      3,     2,       2] //Chicago Steno R1 mild with alt R2
 ];
 
 dishParameters = //dishParameter[keyID][ParameterID]
@@ -349,7 +350,6 @@ $fn = fn;
 
 module choc_stem(draftAng = 5) {
   datumHeight = stemCrossHeight+.1;  // refer to StemTranslation
-  spacerProtrusionHeight = 0.5;
   stemProtrusionHeight = 3.0 + spacerProtrusionHeight;
   legHeight = stemProtrusionHeight + 0.1;
   r = 0.1;

@@ -31,10 +31,11 @@ fn            = 60;  //resolution of Rounded Rectangles: 60 for output
 layers        = 50;  //resolution of vertical Sweep: 50 for output
 dotRadius     = 1.25;   //home dot size
 //---Stem param
+spacerProtrusionHeight = 0.5;
 slop    = 0.25;
 stemWid = 8.8 + slop*2;
 stemLen = 4.4 + slop*2;
-stemCrossHeight = 1.8;
+stemCrossHeight = 1.8+spacerProtrusionHeight;
 extra_vertical  = 0.6;
 StemBrimDep     = 0;
 stemLayers      = 50; //resolution of stem to cap top transition
@@ -42,18 +43,18 @@ driftAngle      = 0;
 
 keyParameters = //keyParameters[KeyID][ParameterID]
 [
-//  BotWid, BotLen, TWDif, TLDif, keyh, WSft, LSft  XSkew, YSkew, ZSkew, WEx, LEx, CapR0i, CapR0f, CapR1i, CapR1f, CapREx, StemEx
+//  BotWid, BotLen, TWDif, TLDif,                        keyh, WSft, LSft, XSkew, YSkew, ZSkew, WEx, LEx, CapR0i, CapR0f, CapR1i, CapR1f, CapREx, StemEx
     //Column 0
     //Levee: Chicago in choc Dimension 0-3
-    [17.20,  16.00,   5.6, 	   5,  3.8,    0,  -.5,     7,    -0,    -0,   2, 2,    .10,      3,     .10,      3,     2,       2], //Chicago Steno R2x 1u
-    [17.20,  16.00,   5.6, 	   5,  4.4,    0,   .0,     0,    -0,    -0,   2, 2,    .10,      3,     .10,      3,     2,       2], //Chicago Steno R3x 1u
+    [17.20,  16.00,   5.6, 	   5,  3.8+spacerProtrusionHeight,    0,  -.5,     7,    -0,    -0,   2, 2,    .10,      3,     .10,      3,     2,       2], //Chicago Steno R2x 1u
+    [17.20,  16.00,   5.6, 	   5,  4.4+spacerProtrusionHeight,    0,   .0,     0,    -0,    -0,   2, 2,    .10,      3,     .10,      3,     2,       2], //Chicago Steno R3x 1u
 
     // R3x 1.25~2.25u [4:8]
-    [21.7,   15.60,   5.6, 	   5.6,  4.5,   0,   .0,   0,    -0,    -0,   2, 2.5,   .1,      3,     .1,      3,     2,       2], //Chicago Steno R3x 1.25u
-    [26.20,  15.60,   5.6, 	   5.6,  4.5,   0,   .0,   0,    -0,    -0,   2, 2.5,   .1,      3,     .1,      3,     2,       2], //Chicago Steno R3x 1.5u
-    [30.70,  15.60,   5.6, 	   5.6,  4.5,   0,   .0,   0,    -0,    -0,   2, 2.5,   .1,      3,     .1,      3,     2,       2], //Chicago Steno R3x 1.75u
-    [35.20,  15.60,   5.6, 	   5.6,  4.5,   0,   .0,   0,    -0,    -0,   2, 2.5,   .1,      3,     .1,      3,     2,       2], //Chicago Steno R3x 2.0u
-    [39.70,  15.60,   5.6, 	   5.6,  4.5,   0,   .0,   0,    -0,    -0,   2, 2.5,   .1,      3,     .1,      3,     2,       2], //Chicago Steno R3x 2.25u
+    [21.7,   15.60,   5.6, 	   5.6,  4.5+spacerProtrusionHeight,   0,   .0,   0,    -0,    -0,   2, 2.5,   .1,      3,     .1,      3,     2,       2], //Chicago Steno R3x 1.25u
+    [26.20,  15.60,   5.6, 	   5.6,  4.5+spacerProtrusionHeight,   0,   .0,   0,    -0,    -0,   2, 2.5,   .1,      3,     .1,      3,     2,       2], //Chicago Steno R3x 1.5u
+    [30.70,  15.60,   5.6, 	   5.6,  4.5+spacerProtrusionHeight,   0,   .0,   0,    -0,    -0,   2, 2.5,   .1,      3,     .1,      3,     2,       2], //Chicago Steno R3x 1.75u
+    [35.20,  15.60,   5.6, 	   5.6,  4.5+spacerProtrusionHeight,   0,   .0,   0,    -0,    -0,   2, 2.5,   .1,      3,     .1,      3,     2,       2], //Chicago Steno R3x 2.0u
+    [39.70,  15.60,   5.6, 	   5.6,  4.5+spacerProtrusionHeight,   0,   .0,   0,    -0,    -0,   2, 2.5,   .1,      3,     .1,      3,     2,       2], //Chicago Steno R3x 2.25u
 
 //  original from pseudo, mislabled/ missing params?
 //    [35.85,  15.65,     7, 	   7,  4.4,    0,   .0,     0,    -0,    -0,   2, 2,    .30,      5,     .30,      5,     2,       2], //Chicago Steno R3x 2u
@@ -300,7 +301,6 @@ $fn = fn;
 
 module choc_stem(draftAng = 5) {
   datumHeight = stemCrossHeight+.1;  // refer to StemTranslation
-  spacerProtrusionHeight = 0.5;
   stemProtrusionHeight = 3.0 + spacerProtrusionHeight;
   legHeight = stemProtrusionHeight + 0.1;
   r = 0.1;
