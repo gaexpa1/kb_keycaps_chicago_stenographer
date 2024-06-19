@@ -524,18 +524,18 @@ module cherry_stem(depth, slop) {
 
 module choc_stem(draftAng = 5) {
   datumHeight = stemCrossHeight+.1;  // refer to StemTranslation
-  stemProtrusionHeight = 3.0 + spacerProtrusionHeight;
-  legHeight = stemProtrusionHeight + 0.1;
+  legProtrusionHeight = 3.0 + spacerProtrusionHeight;
+  legHeight = legProtrusionHeight + 0.1;
   r = 0.1;
-  legWid = 1.1;
-  legLen = 3.0;
+  legWidth = 1.1;
+  legLength = 3.0;
   module leg() {
     difference() {
       translate([0, 0, -legHeight/2]) linear_extrude(height = legHeight) hull() {
-        translate([legWid/2 - r, legLen/2 - r]) circle(r = r);
-        translate([legWid/2 - r, -legLen/2 + r]) circle(r = r);
-        translate([-legWid/2 + r, legLen/2 - r]) circle(r = r);
-        translate([-legWid/2 + r, -legLen/2 + r]) circle(r = r);
+        translate([legWidth/2 - r, legLength/2 - r]) circle(r = r);
+        translate([legWidth/2 - r, -legLength/2 + r]) circle(r = r);
+        translate([-legWidth/2 + r, legLength/2 - r]) circle(r = r);
+        translate([-legWidth/2 + r, -legLength/2 + r]) circle(r = r);
       }
 
       //cuts
@@ -544,16 +544,16 @@ module choc_stem(draftAng = 5) {
     }
   }
 
-  translate([5.7/2, 0, legHeight/2 - stemProtrusionHeight + datumHeight]) leg();
-  translate([-5.7/2, 0, legHeight/2 - stemProtrusionHeight + datumHeight]) leg();
+  translate([5.7/2, 0, legHeight/2 - legProtrusionHeight + datumHeight]) leg();
+  translate([-5.7/2, 0, legHeight/2 - legProtrusionHeight + datumHeight]) leg();
 
   spacerHeight = spacerProtrusionHeight + 0.1;
-  spacerWid = 0.5;
-  spacerLen = 2.5;
+  spacerWidth = 0.5;
+  spacerLength = 2.5;
   module spacer() {
     translate([0, 0, -spacerHeight/2]) linear_extrude(height = spacerHeight) hull() {
-      translate([0, (spacerLen - spacerWid)/2]) circle(d = spacerWid);
-      translate([0, -(spacerLen - spacerWid)/2]) circle(d = spacerWid);
+      translate([0, (spacerLength - spacerWidth)/2]) circle(d = spacerWidth);
+      translate([0, -(spacerLength - spacerWidth)/2]) circle(d = spacerWidth);
     }
   }
 
