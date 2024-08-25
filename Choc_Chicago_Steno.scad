@@ -63,7 +63,7 @@ keyParameters = //keyParameters[KeyID][ParameterID]
     [21.7,   15.60,  5.6, 	   5,  4.9+spacerProtrusionHeight,    0,   .0,     5,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.25u
     [21.7,   15.60,  5.6, 	   5,  4.5+spacerProtrusionHeight,    0,   .0,     0,    -0,    -0,   2, 2.5,     .1,      3,      .1,      3,     2,       2], //Chicago Steno R3 1.25u
     //1.5: [7, 8]
-    [26.40,  16.40,   5.6, 	   5,  5.5+spacerProtrusionHeight,    0,   .0,     6,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.5
+    [26.40,  16.40,   5.6, 	   5,  7.8+spacerProtrusionHeight,    0,   .0,    15,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.5
     [26.20,  15.60,   5.6, 	   5,  4.5+spacerProtrusionHeight,    0,   .0,     0,    -0,    -0,   2, 2.5,     .1,      3,      .1,      3,     2,       2], //Chicago Steno R3 1.5u
     //1.75: [9, 10]
     [30.70,  15.60,   5.6, 	   5,  4.9+spacerProtrusionHeight,    0,   .0,     5,    -0,    -0,   2, 2.5,     .1,      2,      .1,      3,     2,       2], //Chicago Steno R2/R4 1.5
@@ -95,7 +95,7 @@ dishParameters = //dishParameter[keyID][ParameterID]
   [ 4.5,    4,    7,  -40,      8,    1.7,   16.0,  22.5,     2,      4.5,    4,    2,   -35,   16.0,  19.5,     2], //Chicago Steno R2/R4
   [ 4.5,    4,    5,  -40,      8,    1.7,   16.0,  19.5,     2,      4.5,    4,    5,   -40,   16.0,  19.5,     2], //Chicago Steno R3
   //1.5
-  [ 4.5,    4,    7,  -40,      8,    1.7,   20.5,  26.5,     2,      4.5,    4,    2,   -35,   20.5,  24.0,     2], //Chicago Steno R2/R4
+  [ 3.8,    4,    7,  -40,      8,    1.7,   20.5,  26.5,     2,      5.2,    4,    2,   -35,   20.5,  24.0,     2], //Chicago Steno R2/R4
   [ 4.5,    4,    5,  -40,      8,    1.7,   20.5,  24.0,     2,      4.5,    4,    5,   -40,   20.5,  24.0,     2], //Chicago Steno R3
   //1.75
   [ 4.5,    4,    7,  -40,      8,    1.7,   25.0,  31.0,     2,      4.5,    4,    2,   -35,   25.0,  28.5,     2], //Chicago Steno R2/R4
