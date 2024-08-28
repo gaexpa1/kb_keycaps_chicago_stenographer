@@ -254,56 +254,56 @@ path_trans2 = [for (t=[0:step:180])   translation(oval_path(t,0,10,15,2,0))*rota
 //--------------Function definng Cap
 function CapTranslation(t, keyID) =
   [
-    ((1-t)/layers*TopWidShift(keyID)),   //X shift
-    ((1-t)/layers*TopLenShift(keyID)),   //Y shift
-    (t/layers*KeyHeight(keyID))    //Z shift
+    (-t/(layers-1)*TopWidShift(keyID)),   //X shift
+    (-t/(layers-1)*TopLenShift(keyID)),   //Y shift
+    (t/(layers-1)*KeyHeight(keyID))    //Z shift
   ];
 
 function InnerTranslation(t, keyID) =
   [
-    ((1-t)/layers*TopWidShift(keyID)),   //X shift
-    ((1-t)/layers*TopLenShift(keyID)),   //Y shift
-    (t/layers*(KeyHeight(keyID)-topthickness))    //Z shift
+    (-t/(layers-1)*TopWidShift(keyID)),   //X shift
+    (-t/(layers-1)*TopLenShift(keyID)),   //Y shift
+    (t/(layers-1)*(KeyHeight(keyID)-topthickness))    //Z shift
   ];
 
 function CapRotation(t, keyID) =
   [
-    ((1-t)/layers*XAngleSkew(keyID)),   //X shift
-    ((1-t)/layers*YAngleSkew(keyID)),   //Y shift
-    ((1-t)/layers*ZAngleSkew(keyID))    //Z shift
+    (-t/(layers-1)*XAngleSkew(keyID)),   //X shift
+    (-t/(layers-1)*YAngleSkew(keyID)),   //Y shift
+    (-t/(layers-1)*ZAngleSkew(keyID))    //Z shift
   ];
 
 function CapTransform(t, keyID) =
   [
-    pow(t/layers, WidExponent(keyID))*(BottomWidth(keyID) -TopWidthDiff(keyID)) + (1-pow(t/layers, WidExponent(keyID)))*BottomWidth(keyID) ,
-    pow(t/layers, LenExponent(keyID))*(BottomLength(keyID)-TopLenDiff(keyID)) + (1-pow(t/layers, LenExponent(keyID)))*BottomLength(keyID)
+    pow(t/(layers-1), WidExponent(keyID))*(BottomWidth(keyID) -TopWidthDiff(keyID)) + (1-pow(t/(layers-1), WidExponent(keyID)))*BottomWidth(keyID) ,
+    pow(t/(layers-1), LenExponent(keyID))*(BottomLength(keyID)-TopLenDiff(keyID)) + (1-pow(t/(layers-1), LenExponent(keyID)))*BottomLength(keyID)
   ];
 function CapRoundness(t, keyID) =
   [
-    pow(t/layers, ChamExponent(keyID))*(CapRound0f(keyID)) + (1-pow(t/layers, ChamExponent(keyID)))*CapRound0i(keyID),
-    pow(t/layers, ChamExponent(keyID))*(CapRound1f(keyID)) + (1-pow(t/layers, ChamExponent(keyID)))*CapRound1i(keyID)
+    pow(t/(layers-1), ChamExponent(keyID))*(CapRound0f(keyID)) + (1-pow(t/(layers-1), ChamExponent(keyID)))*CapRound0i(keyID),
+    pow(t/(layers-1), ChamExponent(keyID))*(CapRound1f(keyID)) + (1-pow(t/(layers-1), ChamExponent(keyID)))*CapRound1i(keyID)
   ];
 
-function CapRadius(t, keyID) = pow(t/layers, ChamExponent(keyID))*ChamfFinRad(keyID) + (1-pow(t/layers, ChamExponent(keyID)))*ChamfInitRad(keyID);
+function CapRadius(t, keyID) = pow(t/(layers-1), ChamExponent(keyID))*ChamfFinRad(keyID) + (1-pow(t/(layers-1), ChamExponent(keyID)))*ChamfInitRad(keyID);
 
 function InnerTransform(t, keyID) =
   [
-    pow(t/layers, WidExponent(keyID))*(BottomWidth(keyID) -TopWidthDiff(keyID)-wallthickness*2) + (1-pow(t/layers, WidExponent(keyID)))*(BottomWidth(keyID) -wallthickness*2),
-    pow(t/layers, LenExponent(keyID))*(BottomLength(keyID)-TopLenDiff(keyID)  -wallthickness*2) + (1-pow(t/layers, LenExponent(keyID)))*(BottomLength(keyID)-wallthickness*2)
+    pow(t/(layers-1), WidExponent(keyID))*(BottomWidth(keyID) -TopWidthDiff(keyID)-wallthickness*2) + (1-pow(t/(layers-1), WidExponent(keyID)))*(BottomWidth(keyID) -wallthickness*2),
+    pow(t/(layers-1), LenExponent(keyID))*(BottomLength(keyID)-TopLenDiff(keyID)  -wallthickness*2) + (1-pow(t/(layers-1), LenExponent(keyID)))*(BottomLength(keyID)-wallthickness*2)
   ];
 
 function StemTranslation(t, keyID) =
   [
-    ((1-t)/stemLayers*TopWidShift(keyID)),   //X shift
-    ((1-t)/stemLayers*TopLenShift(keyID)),   //Y shift
-    stemCrossHeight+.1 + (t/stemLayers*(KeyHeight(keyID)- topthickness - stemCrossHeight-.1))    //Z shift
+    (-t/(stemLayers-1)*TopWidShift(keyID)),   //X shift
+    (-t/(stemLayers-1)*TopLenShift(keyID)),   //Y shift
+    stemCrossHeight+.1 + (t/(stemLayers-1)*(KeyHeight(keyID)- topthickness - (stemCrossHeight+.1) + 0.1))    //Z shift
   ];
 
 function StemRotation(t, keyID) =
   [
-    ((1-t)/stemLayers*XAngleSkew(keyID)),   //X shift
-    ((1-t)/stemLayers*YAngleSkew(keyID)),   //Y shift
-    ((1-t)/stemLayers*ZAngleSkew(keyID))    //Z shift
+    (-t/(stemLayers-1)*XAngleSkew(keyID)),   //X shift
+    (-t/(stemLayers-1)*YAngleSkew(keyID)),   //Y shift
+    (-t/(stemLayers-1)*ZAngleSkew(keyID))    //Z shift
   ];
 
 // Swap width and length of little rectangular platform below the stem
@@ -312,26 +312,18 @@ function StemTransform(t, keyID, StemRot) =
   StemRot == 0
   ? // stemRot is 0
     [
-      pow(t/stemLayers, StemExponent(keyID))*(BottomWidth(keyID) -TopWidthDiff(keyID)-wallthickness*2) + (1-pow(t/stemLayers, StemExponent(keyID)))*(stemWid - 2*slop),
-      pow(t/stemLayers, StemExponent(keyID))*(BottomLength(keyID)-TopLenDiff(keyID)  -wallthickness*2) + (1-pow(t/stemLayers, StemExponent(keyID)))*(stemLen - 2*slop)
+      pow(t/(stemLayers-1), StemExponent(keyID))*(BottomWidth(keyID) -TopWidthDiff(keyID)-wallthickness*2) + (1-pow(t/(stemLayers-1), StemExponent(keyID)))*(stemWid - 2*slop),
+      pow(t/(stemLayers-1), StemExponent(keyID))*(BottomLength(keyID)-TopLenDiff(keyID)  -wallthickness*2) + (1-pow(t/(stemLayers-1), StemExponent(keyID)))*(stemLen - 2*slop)
     ]
   : // else swap stemWid and stemLen
     [
-      pow(t/stemLayers, StemExponent(keyID))*(BottomWidth(keyID) -TopWidthDiff(keyID)-wallthickness*2) + (1-pow(t/stemLayers, StemExponent(keyID)))*(stemLen - 2*slop),
-      pow(t/stemLayers, StemExponent(keyID))*(BottomLength(keyID)-TopLenDiff(keyID)  -wallthickness*2) + (1-pow(t/stemLayers, StemExponent(keyID)))*(stemWid - 2*slop)
+      pow(t/(stemLayers-1), StemExponent(keyID))*(BottomWidth(keyID) -TopWidthDiff(keyID)-wallthickness*2) + (1-pow(t/(stemLayers-1), StemExponent(keyID)))*(stemLen - 2*slop),
+      pow(t/(stemLayers-1), StemExponent(keyID))*(BottomLength(keyID)-TopLenDiff(keyID)  -wallthickness*2) + (1-pow(t/(stemLayers-1), StemExponent(keyID)))*(stemWid - 2*slop)
     ]
   ;
 
-function StemRadius(t, keyID) = pow(t/stemLayers,3)*3 + (1-pow(t/stemLayers, 3))*1;
+function StemRadius(t, keyID) = pow(t/(stemLayers-1),3)*3 + (1-pow(t/(stemLayers-1), 3))*1;
   //Stem Exponent
-
-//
-
-function FTanRadius(t, keyID) = pow(t/stepsize,TanArcExpo(keyID) )*ForwardTanInit(keyID) + (1-pow(t/stepsize, TanArcExpo(keyID) ))*ForwardTanFin(keyID);
-
-function BTanRadius(t, keyID) = pow(t/stepsize,TanArcExpo(keyID) )*BackTanInit(keyID)  + (1-pow(t/stepsize, TanArcExpo(keyID) ))*BackTanFin(keyID);
-
-function TanTransition(t, keyID) = pow(t/stepsize,TanArcExpo(keyID) )*TransitionAngleInit(keyID)  + (1-pow(t/stepsize, TanArcExpo(keyID) ))*TransitionAngleFin(keyID);
 
 
 ///----- KEY Builder Module
@@ -342,8 +334,11 @@ module keycap_cs_thumb(keyID = 0, cutLen = 0, visualizeDish = false, crossSectio
   BackPath  = quantize_trajectories(BackTrajectory(keyID),  steps = stepsize, loop=false, start_position= $t*4);
 
   //Scaling initial and final dim tranformation by exponents
-  function FrontDishArc(t) =  pow((t)/(len(FrontPath)),FrontArcExpo(keyID))*FrontFinArc(keyID) + (1-pow(t/(len(FrontPath)),FrontArcExpo(keyID)))*FrontInitArc(keyID);
-  function BackDishArc(t)  =  pow((t)/(len(BackPath)),BackArcExpo(keyID))*BackFinArc(keyID) + (1-pow(t/(len(BackPath)),BackArcExpo(keyID)))*BackInitArc(keyID);
+  function FrontDishArc(t) =  pow(t/(len(FrontPath)-1),FrontArcExpo(keyID))*FrontFinArc(keyID) + (1-pow(t/(len(FrontPath)-1),FrontArcExpo(keyID)))*FrontInitArc(keyID);
+  function BackDishArc(t)  =  pow(t/(len(BackPath)-1),BackArcExpo(keyID))*BackFinArc(keyID) + (1-pow(t/(len(BackPath)-1),BackArcExpo(keyID)))*BackInitArc(keyID);
+  function FTanRadius(t, keyID) = pow(t/(len(FrontPath)-1),TanArcExpo(keyID) )*ForwardTanInit(keyID) + (1-pow(t/(len(FrontPath)-1), TanArcExpo(keyID) ))*ForwardTanFin(keyID);
+  function BTanRadius(t, keyID) = pow(t/(len(BackPath)-1),TanArcExpo(keyID) )*BackTanInit(keyID)  + (1-pow(t/(len(BackPath)-1), TanArcExpo(keyID) ))*BackTanFin(keyID);
+  function TanTransition(t, keyID) = pow(t/(len(FrontPath)-1),TanArcExpo(keyID) )*TransitionAngleInit(keyID)  + (1-pow(t/(len(FrontPath)-1), TanArcExpo(keyID) ))*TransitionAngleFin(keyID);
   FrontCurve = [ for(i=[0:len(FrontPath)-1]) transform(FrontPath[i], DishShape2( a= DishDepth(keyID), b= FrontDishArc(i), phi = TransitionAngleInit(keyID) , theta= 60
     , r = FTanRadius(i, keyID))) ];
   BackCurve  = [ for(i=[0:len(BackPath)-1])  transform(BackPath[i],  DishShape2(DishDepth(keyID), BackDishArc(i), phi = TransitionAngleInit(keyID), theta= 60
@@ -355,8 +350,8 @@ module keycap_cs_thumb(keyID = 0, cutLen = 0, visualizeDish = false, crossSectio
   SFrontPath = quantize_trajectories(SFrontTrajectory(keyID), steps = stepsize, loop=false, start_position= $t*4);
   SBackPath  = quantize_trajectories(SBackTrajectory(keyID),  steps = stepsize, loop=false, start_position= $t*4);
 
-  function SFrontDishArc(t) =  pow((t)/(len(SFrontPath)),SFrontArcExpo(keyID))*SFrontFinArc(keyID) + (1-pow(t/(len(SFrontPath)),SFrontArcExpo(keyID)))*SFrontInitArc(keyID);
-  function SBackDishArc(t)  =  pow((t)/(len(SBackPath)),SBackArcExpo(keyID))*SBackFinArc(keyID) + (1-pow(t/(len(SBackPath)),SBackArcExpo(keyID)))*SBackInitArc(keyID);
+  function SFrontDishArc(t) =  pow(t/(len(SFrontPath)-1),SFrontArcExpo(keyID))*SFrontFinArc(keyID) + (1-pow(t/(len(SFrontPath)-1),SFrontArcExpo(keyID)))*SFrontInitArc(keyID);
+  function SBackDishArc(t)  =  pow(t/(len(SBackPath)-1),SBackArcExpo(keyID))*SBackFinArc(keyID) + (1-pow(t/(len(SBackPath)-1),SBackArcExpo(keyID)))*SBackInitArc(keyID);
 
   SFrontCurve = [ for(i=[0:len(SFrontPath)-1]) transform(SFrontPath[i], DishShape(SDishDepth(keyID), SFrontDishArc(i), 1, d = 0)) ];
   SBackCurve  = [ for(i=[0:len(SBackPath)-1])  transform(SBackPath[i],  DishShape(SDishDepth(keyID),  SBackDishArc(i), 1, d = 0)) ];
